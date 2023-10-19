@@ -6,11 +6,11 @@
 
 using Byte = uint8_t;
 
-class Disassembler
+namespace Disassembler
 {
-public:
-	static void Disassemble(const std::string& file);
+	void Disassemble(const std::string& file);
 
-private:
-	static std::vector<Byte> ReadFile(const std::string& file);
+	std::vector<Byte> ReadFile(const std::string& file);
+
+	std::vector<std::string> ParseOperators(const std::vector<Byte>& bytes);
 };
