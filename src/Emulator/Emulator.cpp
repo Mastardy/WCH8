@@ -1,5 +1,6 @@
 #include "Emulator.hpp"
 #include "Keyboard.hpp"
+#include "AudioManager.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -49,6 +50,8 @@ void Emulator::Run(const std::string& file)
 		if(timeSinceLastClock.count() > mFrequency * 1000)
 		{
 			mGraphicsManager.DrawScreen();
+			if(mSoundTimer > 0)
+				AudioManager::Beep();
 			mSoundTimer = mSoundTimer > 0 ? mSoundTimer - 1 : 0;
 			mDelayTimer = mDelayTimer > 0 ? mDelayTimer - 1 : 0;
 			clockTimer = std::chrono::high_resolution_clock::now();

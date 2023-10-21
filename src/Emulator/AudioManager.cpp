@@ -1,6 +1,6 @@
 #include "AudioManager.hpp"
 
-void AudioManager::PlaySound(unsigned short frequency, unsigned int duration)
+void AudioManager::Beep()
 {
-	Beep(frequency, duration);
+	MessageBeep(MB_OK);
 }

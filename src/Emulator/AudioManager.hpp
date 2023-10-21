@@ -5,5 +5,5 @@
 class AudioManager
 {
 public:
-	static void PlaySound(unsigned short frequency, unsigned int duration);
+	static void Beep();
 };
