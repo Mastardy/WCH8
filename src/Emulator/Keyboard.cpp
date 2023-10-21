@@ -26,3 +26,18 @@ void Keyboard::ResetKeys()
 	for (int i = 0; i < 16; i++)
 		mKeys[i] = false;
 }
+
+uint8_t Keyboard::WaitKey()
+{
+	int currentKey = 0;
+	while(true)
+	{
+		if(GetAsyncKeyState(keys[currentKey]))
+		{
+			return currentKey;
+		}
+
+		++currentKey;
+		if(currentKey == 16) currentKey = 0;
+	}
+}

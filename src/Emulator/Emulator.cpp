@@ -201,15 +201,7 @@ void Emulator::ExecuteNextInstruction()
 					mRegisters[instruction.first & 0x0F] = mDelayTimer;
 					break;
 				case 0x0A:
-					for(int i = 0; i < 16; ++i)
-					{
-						if(Keyboard::GetKey(i))
-						{
-							mRegisters[instruction.first & 0x0F] = i;
-							break;
-						}
-						if(i == 15) i = 0;
-					}
+					mRegisters[instruction.first & 0x0F] = Keyboard::WaitKey();
 					break;
 				case 0x15:
 					mDelayTimer = mRegisters[instruction.first & 0x0F];

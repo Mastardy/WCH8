@@ -2,5 +2,5 @@
 
 void AudioManager::Beep()
 {
-	MessageBeep(MB_OK);
+	::Beep(700, 100);
 }

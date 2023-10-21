@@ -28,8 +28,8 @@ private:
 
 public:
 	static constexpr Byte mStackPointerStart = 0x50;
-	static constexpr double mFrequency = 1.0 / 500; // 60Hz
-	static constexpr double mTimerFrequency = 1.0 / 60; // 60Hz
+	static constexpr double mFrequency = 1.0 / 500;
+	static constexpr double mTimerFrequency = 1.0 / 60;
 
 private:
 	GraphicsManager mGraphicsManager;
