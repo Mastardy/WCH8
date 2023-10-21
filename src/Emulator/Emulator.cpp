@@ -41,6 +41,7 @@ void Emulator::Run(const std::string& file)
 		if(timeSinceLastInstruction.count() > mTimerFrequency * 1000)
 		{
 			ExecuteNextInstruction();
+			Keyboard::ResetKeys();
 			instructionTimer = std::chrono::high_resolution_clock::now();
 		}
 
