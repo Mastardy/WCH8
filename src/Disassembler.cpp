@@ -68,10 +68,10 @@ namespace Disassembler
 					operations.emplace_back(std::format("SE V{:01X}, V{:01X}", operation.first & 0xF, operation.second >> 4));
 					break;
 				case 0x6:
-					operations.emplace_back(std::format("LD V{:01X} {:02x}", operation.first & 0xF, operation.second));
+					operations.emplace_back(std::format("LD V{:01X}, {:02x}", operation.first & 0xF, operation.second));
 					break;
 				case 0x7:
-					operations.emplace_back(std::format("ADD V{:01X} {:02x}", operation.first & 0xF, operation.second));
+					operations.emplace_back(std::format("ADD V{:01X}, {:02x}", operation.first & 0xF, operation.second));
 					break;
 				case 0x8:
 					switch(operation.second & 0xF)
