@@ -15,6 +15,7 @@ void GraphicsManager::ClearScreen()
 
 void GraphicsManager::DrawScreen()
 {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {0, 0});
 	std::string screen;
 

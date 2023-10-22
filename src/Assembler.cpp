@@ -98,6 +98,140 @@ namespace Assembler
 					machineCode.emplace_back(CharToByte(instruction[8]) << 4 | CharToByte(instruction[9]));
 				}
 			}
+			else if(instruction.substr(0, 2) == "LD")
+			{
+				if(instruction[3] == 'V')
+				{
+					if(instruction[7] == 'D')
+					{
+						machineCode.emplace_back(0xF << 4 | CharToByte(instruction[4]));
+						machineCode.emplace_back(0x07);
+					}
+					else if(instruction[7] == 'K')
+					{
+						machineCode.emplace_back(0xF << 4 | CharToByte(instruction[4]));
+						machineCode.emplace_back(0x0A);
+					}
+					else if(instruction[7] == 'V')
+					{
+						machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[4]));
+						machineCode.emplace_back(CharToByte(instruction[8]) << 4 | 0x0);
+					}
+					else if(instruction.substr(7, 10) == "[I]")
+					{
+						machineCode.emplace_back(0xF << 4 | CharToByte(instruction[4]));
+						machineCode.emplace_back(0x65);
+					}
+					else
+					{
+						machineCode.emplace_back(0x6 << 4 | CharToByte(instruction[4]));
+						machineCode.emplace_back(CharToByte(instruction[7]) << 4 | CharToByte(instruction[8]));
+					}
+				}
+				else if(instruction[3] == 'D')
+				{
+					machineCode.emplace_back(0xF << 4 | CharToByte(instruction[8]));
+					machineCode.emplace_back(0x15);
+				}
+				else if(instruction[3] == 'S')
+				{
+					machineCode.emplace_back(0xF << 4 | CharToByte(instruction[8]));
+					machineCode.emplace_back(0x18);
+				}
+				else if(instruction[3] == 'F')
+				{
+					machineCode.emplace_back(0xF << 4 | CharToByte(instruction[7]));
+					machineCode.emplace_back(0x29);
+				}
+				else if(instruction[3] == 'I')
+				{
+					machineCode.emplace_back(0xA << 4 | CharToByte(instruction[6]));
+					machineCode.emplace_back(CharToByte(instruction[7]) << 4 | CharToByte(instruction[8]));
+				}
+				else if(instruction[3] == 'B')
+				{
+					machineCode.emplace_back(0xF << 4 | CharToByte(instruction[7]));
+					machineCode.emplace_back(0x33);
+				}
+				else
+				{
+					machineCode.emplace_back(0xF << 4 | CharToByte(instruction[9]));
+					machineCode.emplace_back(0x55);
+				}
+			}
+			else if(instruction.substr(0, 3) == "ADD")
+			{
+				if(instruction[4] == 'I')
+				{
+					machineCode.emplace_back(0xF << 4 | CharToByte(instruction[8]));
+					machineCode.emplace_back(0x1E);
+				}
+				else if(instruction[8] == 'V')
+				{
+					machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[5]));
+					machineCode.emplace_back(CharToByte(instruction[9]) << 4 | 0x4);
+				}
+				else
+				{
+					machineCode.emplace_back(0x7 << 4 | CharToByte(instruction[5]));
+					machineCode.emplace_back(CharToByte(instruction[8]) << 4 | CharToByte(instruction[9]));
+				}
+			}
+			else if(instruction.substr(0, 2) == "OR")
+			{
+				machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[4]));
+				machineCode.emplace_back(CharToByte(instruction[8]) << 4 | 0x1);
+			}
+			else if(instruction.substr(0, 3) == "AND")
+			{
+				machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(CharToByte(instruction[9]) << 4 | 0x2);
+			}
+			else if(instruction.substr(0, 3) == "XOR")
+			{
+				machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(CharToByte(instruction[9]) << 4 | 0x3);
+			}
+			else if(instruction.substr(0, 4) == "SUBN")
+			{
+				machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[6]));
+				machineCode.emplace_back(CharToByte(instruction[10]) << 4 | 0x7);
+			}
+			else if(instruction.substr(0, 3) == "SUB")
+			{
+				machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(CharToByte(instruction[9]) << 4 | 0x5);
+			}
+			else if(instruction.substr(0, 3) == "SHR")
+			{
+				machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(0x06);
+			}
+			else if(instruction.substr(0, 3) == "SHL")
+			{
+				machineCode.emplace_back(0x8 << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(0x0E);
+			}
+			else if(instruction.substr(0, 3) == "RND")
+			{
+				machineCode.emplace_back(0xC << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(CharToByte(instruction[8]) << 4 | CharToByte(instruction[9]));
+			}
+			else if(instruction.substr(0, 3) == "DRW")
+			{
+				machineCode.emplace_back(0xD << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(CharToByte(instruction[9]) << 4 | CharToByte(instruction[12]));
+			}
+			else if(instruction.substr(0, 3) == "SKP")
+			{
+				machineCode.emplace_back(0xE << 4 | CharToByte(instruction[5]));
+				machineCode.emplace_back(0x9E);
+			}
+			else if(instruction.substr(0, 4) == "SKNP")
+			{
+				machineCode.emplace_back(0xE << 4 | CharToByte(instruction[6]));
+				machineCode.emplace_back(0xA1);
+			}
 		}
 
 		return machineCode;
@@ -105,6 +239,7 @@ namespace Assembler
 
 	Byte CharToByte(char c)
 	{
+		c = static_cast<char>(toupper(c));
 		switch (c)
 		{
 			case '0':
@@ -140,19 +275,15 @@ namespace Assembler
 			case 'F':
 				return 0x0F;
 			default:
-				system("cls");
-				std::cerr << "Byte not recognized! " << c << '\n';
+				std::cerr << "Byte not recognized! " << static_cast<int>(c) << '\n';
 				std::cin.get();
 				exit(2);
-				break;
 		}
-
-		return 0x0;
 	}
 
 	void SaveFile(const std::vector<Byte>& machineCode, const std::string& file)
 	{
-		std::ofstream output(file.substr(0, file.size() - 3));
+		std::ofstream output(file.substr(0, file.size() - 3), std::ios::binary);
 
 		for (const auto& byte : machineCode)
 		{

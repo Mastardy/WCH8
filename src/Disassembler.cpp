@@ -115,7 +115,7 @@ namespace Disassembler
 					operations.emplace_back(std::format("LD I, {:01X}{:02X}", operation.first & 0xF, operation.second));
 					break;
 				case 0xB:
-					operations.emplace_back(std::format("JP V0, {:01X}{:02X}", operation.first & 0xF, operation.second >> 4));
+					operations.emplace_back(std::format("JP V0, {:01X}{:02X}", operation.first & 0xF, operation.second));
 					break;
 				case 0xC:
 					operations.emplace_back(std::format("RND V{:01X}, {:02X}", operation.first & 0xF, operation.second));
