@@ -1,9 +1,18 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <cstdint>
 
-class Assembler
+using Byte = uint8_t;
+using Word = uint16_t;
+
+namespace Assembler
 {
-public:
-	static void Assemble(const std::string& file);
+	void Assemble(const std::string& file);
+
+	std::vector<std::string> ReadFile(const std::string& file);
+	std::vector<Byte> ParseCode(const std::vector<std::string>& code);
+	void SaveFile(const std::vector<Byte>& machineCode, const std::string& file);
+	Byte CharToByte(char c);
 };
