@@ -17,7 +17,6 @@ int main(int argc, char const* argv[])
 	{
 		Emulator emulator;
 		emulator.Run(file);
-		std::cin.get();
 	} else IncorrectUsage(argv[0]);
 
 	return 0;

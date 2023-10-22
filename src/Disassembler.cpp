@@ -189,6 +189,7 @@ namespace Disassembler
 		{
 			output << operation << std::endl;
 		}
-		output << '\0';
+
+		output.close();
 	}
 }
